@@ -1,0 +1,139 @@
+Hello, all today we will be presenting our project based on Introduction to Datascience course. 
+Our problem statement is to use the given patient records to determine which patients have liver disaese and which ones do not and applying ML Classification algorithms on the data set to get inferences from the data.
+We will be using K Nearest neighbour and logistic regression in order to classify our dataset. 
+We have taken the data from Kaggle Indian Liver Patient Dataset.
+
+
+Here is the data with attributes 
+Age,Alkaline_Phosphotase
+Alamine_Aminotransferase
+Aspartate_Aminotransferase having integer datatype, 
+
+
+Total_Bilirubin, Direct_Bilirubin Total_Protiens,Albuminand Albumin_and_Globulin_Ratio are of float datatype
+while dataset and gender are categorical attributes. 
+
+where Gender have categories male and female, and dataset have category 1 representing liver disease and category 2 representing not liver disease 
+Data has 583 entries and 11 attributes.
+
+First of all we will overview the data 
+According to data 416 people out of 583 are diagonosed with liver disease. As we can see from the pie graph 71.35% of the total dataset suffered from liver disease.
+This is a class imbalance problem.
+
+
+Now we will preprocess the data.
+First of all we will Check if any row has missing attribute.
+This data have 4 missing entries in the column Albumin_and_Globulin_Ratio.
+So we remove these rows. 
+Although we loose some data due to this data cleaning, we have to remove these entries inorder to process the data further.
+
+Binarization
+Since we have gender as categorical attribute in our dataset , for further analysis , we need to convert this attribute into numerical data. For this , we are taking the help of dummy variable.
+After binarization ,  value 1 is assigned to Male And 0 to Female
+
+All the attributes  have different range .Due to this , some attributes may have more weightage than others .  So , to bring them all within the same range , we need to perform normalization.
+After noermalization ,all attribute values will lie between 0 and 1.
+
+
+Now we will analyze the data
+firstly, we draw box plot .
+On the x-axis : 1-disease   2- no disease
+On y-axis : all the attributes are listed.
+In the 1st box plot , we can observe that aged people are prone to  liver disease .
+In the 2nd box plot , 1 represents male and 0 represents female
+
+
+Now , we analyze the scatter plot . 
+From the scatter plot , it seems that Direct_Bilirubin is strongly correlated with Total_Bilirium . Also , Albumin and Total_Protiens are roughly correlated.
+
+
+Correlation matrix:
+By observing the correlation matrix , we can say that Total_Proteins is least correlated with Dataset (class label). Thus , we can drop this attribute.
+
+
+PCA :
+We can observe that  62.78% variance is explained in dimension . For this dimension ,  most of the feature weight is associated with Aspartate_Aminotransferase and Alamine_Aminotransferase.Thus these two attributes will be important for analysis.Attributes such as Total_Bilirubin and Direct_Bilirubin have very less weight associated with them and thus , dropping them won't affect our analysis .
+
+
+
+Now , we will do the CLassification
+
+We would use KNN method of classification as the dataset is small and almost numerical. 
+Also since we have binary classification ( 1 for patient having disease and 2 for patient not having disease), Logistic Regression model can be used here.
+
+We will split the dataset into Test data and Training Data
+We will randomly select rows for Training and test data
+20% of the data will be our test data and remaining 80% will be our training data.
+
+We will use KNN classifier model
+As we can see from k value versus recall graph 
+k=1 has the highest recall but we can not take value of k as 1 (eventhough it has maximum recall) as such a small value of k can lead to noise sensitive classification.We need a trade-off between k-value and recall Thus , we choose a value of k such that niether it is too small nor too large.Also, recall should not be compromised. Here , we take k-value as 8. 
+
+
+For testing the data , we will use Manhattan distance since we have categorical data.
+We then obtain the confusion matrix using the test and the training data. Once we obtain the confusion matrix , we can calculate precison , recall and accuracy . We can see that the accuracy is 82%.
+
+Since the proportion of people having disease and  people not having disease in the training set is not same , this is a class imbalance problem . In this case , accuracy alone can not be considered as a good measure for evaluation .Here , we also have to calculate Sensitivity and Specificity 
+
+   Sensitivity is calculated by using the formula : True Positive/Positive and we get 92.5% here
+   Specificity is calculated by using the formula : True Negative/Negativelo and we get 82.06% here
+   
+   Here , we get  Sensitivity =  0.925   and Specificity =0.68
+
+
+
+
+
+
+Here , we will use Logistic Regression classifcation technique. In this case , we will again calculate confusion matrix and using it , precision and recall and accuracy. Here , accuracy is 98%. For the same reason mentioned as above , we will have to calculate sensitivity and specificity.
+ here , we get sensitvity= 1  and specificity=0.94
+ 
+ 
+ Now we will conclude the video
+ Based on sensitivity and  specificity calculated above , we can infer that logistic regression is more suitable for classification of our dataset.        THANK YOU  !!!
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
